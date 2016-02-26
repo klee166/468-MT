@@ -36,7 +36,7 @@ for (k, (f_i, e_j)) in enumerate(fe_count.keys()):
 sys.stderr.write("\n")
 
 for (f, e) in bitext:
-  for (i, f_i) in enumerate(f): 
+  for (i, f_i) in enumerate(f):
     for (j, e_j) in enumerate(e):
       if dice[(f_i,e_j)] >= opts.threshold:
         sys.stdout.write("%i-%i " % (i,j))
