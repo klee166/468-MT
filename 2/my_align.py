@@ -7,6 +7,7 @@
 import optparse
 import sys
 from collections import defaultdict
+import random
 
 optparser = optparse.OptionParser()
 optparser.add_option("-d", "--data", dest="train", default="en600.468/aligner/data/hansards", help="Data filename prefix (default=data)")
@@ -26,8 +27,10 @@ t_probability = defaultdict(float) # Transition probability
 sys.stderr.write("Initializing theta...")
 for (n, (f, e)) in enumerate(bitext):
     for f_i in set(f):
+        p = random.uniform(0.03, 0.125) # Assuming avg. sentence length of 8-33 words.
         for e_j in set(e):
-            t_probability[(f_i,e_j)] = 1.0/(len(e)+1) # Uniform distribution
+            #t_probability[(f_i,e_j)] = 1.0/(len(e)+1) # Uniform distribution
+            t_probability[(f_i,e_j)] = p
         if n % 500 == 0:
             sys.stderr.write(".") # To give user rough-estimate of execution progress
 sys.stderr.write("\n")
