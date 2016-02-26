@@ -27,7 +27,7 @@ sys.stderr.write("Initializing theta...")
 for (n, (f, e)) in enumerate(bitext):
     for f_i in set(f):
         for e_j in set(e):
-            t_probability[(f_i,e_j)] = 1.0/len(e) # uniform distribution
+            t_probability[(f_i,e_j)] = 1.0/(len(e)+1) # uniform distribution
         if n % 500 == 0:
             sys.stderr.write(".") # To give user rough-estimate of execution progress
 sys.stderr.write("\n")
