@@ -1,7 +1,7 @@
 # Word Alignment
 
-| Model           | AE    |
-|:--------------- | -----:|
+| Model           | AER   |
+| --------------- | ----- |
 | Dice            | 0.68  |
 | Model 1 p(f\|e) |       |
 | Model 1 p(e\|f) |       |
