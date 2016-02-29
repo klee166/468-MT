@@ -4,3 +4,9 @@
 2/notes/*
 
 2/en600.468/aligner/*
+
+2/models/hmm.py
+
+2/output
+
+*.pyc
