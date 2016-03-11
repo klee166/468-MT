@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+## This program is built on the decode program written for CS468 MT @ JHU.
+## The program implements the beam decoder with source word re-ordering, restricted
+## to phrase jumps of maximum length k=4.
+##
+## Example swaps are
+## f1 f2 --> f2 f1
+## f1 f2 f3 --> f3 f1 f2
+## f1 f2 f3 f4 --> f4 f1 f2 f3
+
 import optparse
 import sys
 import os
@@ -58,9 +68,9 @@ for f in french:
                 #fi = i + 1
                 #fj = fi+len(f[i:j])
                 swap = (f[i+1],) + (f[i],) + f[i+2:j] if len(f[i:j]) >= 2 else ""
-                swap_2 = (f[i+2],) + (f[i+1],) + (f[i],) + f[i+3:j] if len(f[i:j]) >= 3 else ""
-                swap_3 = (f[i+3],) + (f[i+1],) + (f[i+2],) + (f[i],) + f[i+4:j] if len(f[i:j]) >= 4 else ""
-                swap_4 = (f[i+4],) + (f[i+1],) + (f[i+2],) + (f[i+3],) + (f[i],) + f[i+4:j] if len(f[i:j]) >= 5 else ""
+                swap_2 = (f[i+2],) + (f[i],) + (f[i+1],) + f[i+3:j] if len(f[i:j]) >= 3 else ""
+                swap_3 = (f[i+3],) + (f[i],) + (f[i+1],) + (f[i+2],) + f[i+4:j] if len(f[i:j]) >= 4 else ""
+
                 if f[i:j] in tm:
                     for phrase in tm[f[i:j]]:
                         logprob = h.logprob + phrase.logprob
@@ -99,18 +109,6 @@ for f in french:
 
                 if len(swap_3) != 0 and swap_3 in tm:
                     for phrase in tm[swap_3]:
-                        logprob = h.logprob + phrase.logprob
-                        lm_state = h.lm_state
-                        for word in phrase.english.split():
-                            (lm_state, word_logprob) = lm.score(lm_state, word)
-                            logprob += word_logprob
-                        logprob += lm.end(lm_state) if j == len(f) else 0.0
-                        new_hypothesis = hypothesis(logprob, lm_state, h, phrase)
-                        if lm_state not in stacks[j] or stacks[j][lm_state].logprob < logprob: # second case is recombination
-                            stacks[j][lm_state] = new_hypothesis
-
-                if len(swap_4) != 0 and swap_4 in tm:
-                    for phrase in tm[swap_4]:
                         logprob = h.logprob + phrase.logprob
                         lm_state = h.lm_state
                         for word in phrase.english.split():
