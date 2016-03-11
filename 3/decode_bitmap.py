@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import optparse
 import sys
 import models
@@ -20,8 +21,8 @@ optparser.add_option("-i", "--input", dest="input", default="data/input", help="
 optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
 optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
 optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
-optparser.add_option("-k", "--translations-per-phrase", dest="k", default=1, type="int", help="Limit on number of translations to consider per phrase (default=1)")
-optparser.add_option("-s", "--stack-size", dest="s", default=25, type="int", help="Maximum stack size (default=1)")
+optparser.add_option("-k", "--translations-per-phrase", dest="k", default=50, type="int", help="Limit on number of translations to consider per phrase (default=1)")
+optparser.add_option("-s", "--stack-size", dest="s", default=50, type="int", help="Maximum stack size (default=1)")
 optparser.add_option("-v", "--verbose", dest="verbose", action="store_true", default=False,  help="Verbose mode (default=off)")
 opts = optparser.parse_args()[0]
 
@@ -50,17 +51,37 @@ for f in french:
   stacks = [{} for _ in f] + [{}]
   stacks[0][lm.begin()] = initial_hypothesis
   for i, stack in enumerate(stacks[:-1]):
+    # print "i is: ", i
+    # print "stack is: ", stack
+    # print "stack.itervalues is ", stack.itervalues()
     for h in sorted(stack.itervalues(),key=lambda h: -h.logprob)[:opts.s]: # prune
+    #currently there's only one stack size? 
       for fi in xrange(len(f)):
         for fj in xrange(fi+1, len(f)+1):
           if f[fi:fj] in tm:
+            # print "f[fi:fj] is: ", f[fi:fj]
+            # print "h.v is", bitmap2str(h.v, len(f))
+            # print "fi is: ", fi
+            # print "fj is: ", fj
+            # print "bitmap and is ", bitmap(range(fi,fj)) & h.v
             if (bitmap(range(fi,fj)) & h.v == 0):
               new_v = bitmap(range(fi,fj)) | h.v
               f_translated = h.f_translated + (fj-fi)
-              if (abs(fi-h.fi) < 2) or (abs(fj-h.fj) < 2) or (abs(fi-bitmap2str(h.v, len(f)).index('.'))<1): 
+              # print "absfi is: ", abs(fi-h.fi)
+              # print "absfj is: ", abs(fj-h.fj)
+              # print "fi in range is: ", (fi in range(h.fi,h.fj))
+
+              if (abs(fi-h.fi) < 3) or (abs(fj-h.fj) < 3) or (abs(fi-bitmap2str(h.v, len(f)).index('.'))<1): 
                 for phrase in tm[f[fi:fj]]:
                   logprob = h.logprob + phrase.logprob
                   lm_state = h.lm_state
+                  # print "bitmap"
+                  # print "phrase is: ", phrase
+                  # print "lm_state is ", lm_state
+                  # print "f translated is ", f_translated
+                  # print "new_v is :" , bitmap2str(new_v, len(f))
+                  # if bitmap2str(new_v, len(f)) == "..ooooooo.ooo.":
+                  #   print("HELLOOO")
                   for word in phrase.english.split():
                     (lm_state, word_logprob) = lm.score(lm_state, word)
                     logprob += word_logprob
@@ -68,7 +89,9 @@ for f in french:
                   new_hypothesis = hypothesis(logprob, lm_state, h, phrase, new_v, fi, fj, f_translated)
                   if lm_state not in stacks[f_translated] or (stacks[f_translated][lm_state].v == new_v and \
                     abs(stacks[f_translated][lm_state].logprob) > abs(logprob)):
+                    # print "new_hypothesis in stack", new_hypothesis
                     stacks[f_translated][lm_state] = new_hypothesis
+                  # lm_states  to be deleted  
                   lm_state_del = []
                   for old_lm_state in stacks[f_translated]:
                     if stacks[f_translated][old_lm_state].v == new_v and (old_lm_state != lm_state):
@@ -79,8 +102,10 @@ for f in french:
                           lm_state_del.append(lm_state)
                   for lms in lm_state_del:
                     del stacks[f_translated][lms]
+                    # print "hypothesis del in stack", lms
 
   winner = max(stacks[-1].itervalues(), key=lambda h: h.logprob)
+  sys.stderr.write("Printing a sentence...")
   print extract_english(winner)
 
   if opts.verbose:
