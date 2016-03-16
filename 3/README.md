@@ -14,8 +14,30 @@ to account for word alignment.
 | Model           |  Logprob  |
 | --------------- |:---------:|
 | Beam (default)  | -1439.87  |
-| Beam with adjacent phrase swapping |  |
+| Beam with adjacent phrase swapping | -1435.77 |
 | Beam with "bad" reordering for max jump k=4 | -1435.77 |
 | Beam with "good" reordering for max jump k=4 | -1434.08 |
 | + target word reordering | -1434.08 |
 | Greedy hill-climbing | -1360.48 |
+
+## Usage
+
+The `decode.py` program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run the it, type
+
+```
+python decode.py
+```
+
+Number of sentences can be set using `-n`, and stack size can be set using `-s` option.
+
+```
+python decode.py -s 10000 > output
+```
+```
+python decode.py -n 1
+```
+
+For other options, type
+```
+python decode.py --help
+```
