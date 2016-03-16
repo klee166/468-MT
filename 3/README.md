@@ -22,7 +22,7 @@ to account for word alignment.
 
 ## Usage
 
-The `decode.py` program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run the it, type
+The program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run the it, type
 
 ```
 python decode.py
