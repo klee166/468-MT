@@ -12,3 +12,5 @@
 *.pyc
 
 3/notes/*
+
+3/other/decode_astar.py
