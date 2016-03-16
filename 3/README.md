@@ -22,13 +22,13 @@ to account for word alignment.
 
 ## Usage
 
-The program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run the it, type
+The program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run it, enter
 
 ```
 python decode.py
 ```
 
-Number of sentences can be set using `-n`, and stack size can be set using `-s` option.
+Number of sentences can be set using `-n` option, and stack size using `-s`.
 
 ```
 python decode.py -s 10000 > output
@@ -37,7 +37,7 @@ python decode.py -s 10000 > output
 python decode.py -n 1
 ```
 
-For other options, type
+For other options, enter
 ```
 python decode.py --help
 ```
