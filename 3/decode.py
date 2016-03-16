@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+
+## This program is built on the decode program written for CS468 MT @ JHU.
+## The program implements the Greedy hill-climbing algorithm decoder.
+
 import optparse
 import sys, os
 baseline_path = os.path.join(os.getcwd()[:-1], "en600.468/decoder/")
