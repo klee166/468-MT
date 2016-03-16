@@ -27,7 +27,7 @@ to account for word alignment.
 The program in the main directory uses the Greedy-hill climbing algorithm for decoding. To run it, enter
 
 ```
-python greedy.py
+python decode.py
 ```
 
 Number of sentences can be set using `-n` option, and stack size using `-s`.
