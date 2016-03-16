@@ -17,3 +17,5 @@ to account for word alignment.
 | Beam with adjacent phrase swapping |  |
 | Beam with "bad" reordering for max jump k=4 | -1435.77 |
 | Beam with "good" reordering for max jump k=4 | -1434.08 |
+| + target word reordering | -1434.08 |
+| Greedy hill-climbing | -1360.48 |
