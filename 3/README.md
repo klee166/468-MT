@@ -18,7 +18,9 @@ to account for word alignment.
 | Beam with "bad" reordering for max jump k=4 | -1435.77 |
 | Beam with "good" reordering for max jump k=4 | -1434.08 |
 | + target word reordering | -1434.08 |
+| + coverage vector | -1434.08 |
 | Greedy hill-climbing | -1360.48 |
+| Beam with coverage bitmap and stack size of 2000 (run-time ~2 days) | -1344.41 |
 
 ## Usage
 
