@@ -1,5 +1,8 @@
 import optparse
 import sys
+baseline_path = os.path.join(os.getcwd()[:-7], "en600.468/decoder/")
+if baseline_path not in sys.path:
+     sys.path.insert(0, baseline_path)
 import models
 from collections import namedtuple
 
@@ -16,9 +19,9 @@ def extract_english(h):
   return "" if h.predecessor is None else "%s%s " % (extract_english(h.predecessor), h.phrase.english)
 
 optparser = optparse.OptionParser()
-optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
-optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
-optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
+optparser.add_option("-i", "--input", dest="input", default=baseline_path+"data/input", help="File containing sentences to translate (default=data/input)")
+optparser.add_option("-t", "--translation-model", dest="tm", default=baseline_path+"data/tm", help="File containing translation model (default=data/tm)")
+optparser.add_option("-l", "--language-model", dest="lm", default=baseline_path+"data/lm", help="File containing ARPA-format language model (default=data/lm)")
 optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
 optparser.add_option("-k", "--translations-per-phrase", dest="k", default=50, type="int", help="Limit on number of translations to consider per phrase (default=1)")
 optparser.add_option("-s", "--stack-size", dest="s", default=2000, type="int", help="Maximum stack size (default=1)")
@@ -31,7 +34,7 @@ french = [tuple(line.strip().split()) for line in open(opts.input).readlines()[:
 
 # tm should translate unknown words as-is with probability 1
 for word in set(sum(french,())):
-  #print "word is: ", word #added extra 
+  #print "word is: ", word #added extra
   if (word,) not in tm:
     tm[(word,)] = [models.phrase(word, 0.0)]
 
@@ -39,7 +42,7 @@ sys.stderr.write("Decoding %s...\n" % (opts.input,))
 for f in french:
   # The following code implements a monotone decoding
   # algorithm (one that doesn't permute the target phrases).
-  # Hence all hypotheses in stacks[i] represent translations of 
+  # Hence all hypotheses in stacks[i] represent translations of
   # the first i words of the input sentence. You should generalize
   # this so that they can represent translations of *any* i words.
   hypothesis = namedtuple("hypothesis", "logprob, lm_state, predecessor, phrase, v ,fi, fj, f_translated")
@@ -54,7 +57,7 @@ for f in french:
     # print "stack is: ", stack
     # print "stack.itervalues is ", stack.itervalues()
     for h in sorted(stack.itervalues(),key=lambda h: -h.logprob)[:opts.s]: # prune
-    #currently there's only one stack size? 
+    #currently there's only one stack size?
       for fi in xrange(len(f)):
         for fj in xrange(fi+1, len(f)+1):
           if f[fi:fj] in tm:
@@ -90,7 +93,7 @@ for f in french:
                     abs(stacks[f_translated][lm_state].logprob) > abs(logprob)):
                     # print "new_hypothesis in stack", new_hypothesis
                     stacks[f_translated][lm_state] = new_hypothesis
-                  # lm_states  to be deleted  
+                  # lm_states  to be deleted
                   lm_state_del = []
                   for old_lm_state in stacks[f_translated]:
                     if stacks[f_translated][old_lm_state].v == new_v and (old_lm_state != lm_state):
