@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import optparse
-import sys
+import sys, os
+baseline_path = os.path.join(os.getcwd()[:-1], "en600.468/decoder/")
+if baseline_path not in sys.path:
+     sys.path.insert(0, baseline_path)
 import models
 from collections import namedtuple
 import re
@@ -18,16 +21,16 @@ def logadd10(x,y):
   """ Addition in logspace (base 10): if x=log(a) and y=log(b), returns log(a+b) """
   return x + math.log10(1 + pow(10,y-x))
 
-def extract_english(h): 
+def extract_english(h):
   return "" if h.predecessor is None else "%s%s " % (extract_english(h.predecessor), h.phrase.english)
 
 def extract_phrase_seg(h):
 	seg_english = []
-	if (h.phrase!=None): 
+	if (h.phrase!=None):
 		seg_english.append(h.phrase)
 	while (h.predecessor !=None):
 		h = h.predecessor
-		if (h.phrase!=None): 
+		if (h.phrase!=None):
 			seg_english.append(h.phrase)
 	return seg_english
 
@@ -55,7 +58,7 @@ def find_seed(f, M):
 			for fj in M[fi]:
 				if bitmap(range(fi,fj)) & v == 0:
 					new_v = bitmap(range(fi, fj)) | v
-					s_words = bitmap2str(new_v, len(f)).count('o') 
+					s_words = bitmap2str(new_v, len(f)).count('o')
 					if new_v in chart[s_words] and (chart[s_words][new_v] != None):
 						chart[s_words][new_v] = min_s(chart[s_words][new_v], sums[v], fi, fj)
 					elif(chart[bitmap2str(v, len(f)).count('o')][v]):
@@ -183,7 +186,7 @@ def swap(h):
 	# print "printing swap...."
 	# for english_seg in new_english_seg:
 	# 	for phrase in english_seg:
-	# 		print phrase.english, " " 
+	# 		print phrase.english, " "
 
 
 	rtn_hyp=find_trans_r_m_s(new_english_seg, h)
@@ -205,7 +208,7 @@ def move(h):
 				phrase1_index = english_seg.index(phrase1)
 				break
 		index_f_span1 = h.seg_f.index(f_span1)
-		if (index_f_span1+1) < len(h.seg_f):		
+		if (index_f_span1+1) < len(h.seg_f):
 			f_span2 = h.seg_f[index_f_span1+1]
 			for phrase in tm[f[f_span2[0]:f_span2[1]]]:
 				if phrase in english_seg:
@@ -362,7 +365,7 @@ def find_trans_merge(h,old_fspan1 , old_fspan2 , new_fspan, new_seg_f, f):
 	for old_phrase_1 in tm[f[old_fspan1[0]:old_fspan1[1]]]:
 		# print "phrase is ", phrase
 		if old_phrase_1 in english_seg:
-			current_old_phrase_1 = old_phrase_1 
+			current_old_phrase_1 = old_phrase_1
 			old_phrase_1_index = english_seg.index(old_phrase_1)
 			break
 
@@ -423,9 +426,9 @@ def merge(h, M, f):
 
 
 optparser = optparse.OptionParser()
-optparser.add_option("-i", "--input", dest="input", default="data/input", help="File containing sentences to translate (default=data/input)")
-optparser.add_option("-t", "--translation-model", dest="tm", default="data/tm", help="File containing translation model (default=data/tm)")
-optparser.add_option("-l", "--language-model", dest="lm", default="data/lm", help="File containing ARPA-format language model (default=data/lm)")
+optparser.add_option("-i", "--input", dest="input", default=baseline_path+"data/input", help="File containing sentences to translate (default=data/input)")
+optparser.add_option("-t", "--translation-model", dest="tm", default=baseline_path+"data/tm", help="File containing translation model (default=data/tm)")
+optparser.add_option("-l", "--language-model", dest="lm", default=baseline_path+"data/lm", help="File containing ARPA-format language model (default=data/lm)")
 optparser.add_option("-n", "--num_sentences", dest="num_sents", default=sys.maxint, type="int", help="Number of sentences to decode (default=no limit)")
 optparser.add_option("-k", "--translations-per-phrase", dest="k", default=sys.maxint, type="int", help="Limit on number of translations to consider per phrase (default=1)")
 optparser.add_option("-s", "--stack-size", dest="s", default=1000, type="int", help="Maximum stack size (default=1)")
@@ -445,7 +448,7 @@ for word in set(sum(french,())):
 sys.stderr.write("Decoding %s...\n" % (opts.input,))
 
 
-for f in french: 
+for f in french:
 	hypothesis = namedtuple("hypothesis", "logprob, lm_state, predecessor, phrase, seg_f, seg_e, alignment")
   	M = get_source_phrase(f)
 	seg_f = find_seed(f, M)
@@ -453,7 +456,7 @@ for f in french:
 	hypothesis= find_seed_trans(seg_f, f) #find seed translation
 	current = hypothesis
 
-	#loop for finding 
+	#loop for finding
 	for x in xrange(100000000):
 		s_current = abs(current.logprob)
 		s = s_current
@@ -465,6 +468,6 @@ for f in french:
 		if s == s_current:
 			print extract_english(current)
 			break
-		else: 
+		else:
 			current = best
 	# print extract_english(best_hypothesis)
