@@ -454,7 +454,7 @@ for f in french:
 	current = hypothesis
 
 	#loop for finding 
-	for x in xrange(100000):
+	for x in xrange(100000000):
 		s_current = abs(current.logprob)
 		s = s_current
 		for h in neighborhood(current, M, f, current.seg_f):
