@@ -7,7 +7,7 @@
 import argparse # optparse is deprecated
 from itertools import islice # slicing for iterators
 import sys, os
-baseline_path = os.path.join(os.getcwd()[:-1], "en600.468/evaluator/")
+baseline_path = os.path.join(os.getcwd()[:-7], "en600.468/evaluator/")
 if baseline_path not in sys.path:
     sys.path.insert(0, baseline_path)
 from nltk.corpus import wordnet as wn
