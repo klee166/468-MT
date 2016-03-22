@@ -2,6 +2,15 @@
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
 
+| Evaluator       |  Accuracy  |
+| --------------- |:---------:|
+| Baseline | 0.449312  |
+| METEOR | 0.504380 |
+| METEOR + stemming | 0.506101 |
+| METEOR + stemming + synonyms | 0.505749 |
+| METEOR + synonyms | 0.506884 |
+
+
 ## How alpha was chosen
 | Accuracy |  Alpha  |
 |----------|:-------:|
