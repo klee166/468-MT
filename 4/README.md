@@ -2,14 +2,13 @@
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
 
-| Evaluator       |  Accuracy  |
+| Evaluation Metric |  Accuracy  |
 | --------------- |:---------:|
 | Baseline | 0.449312  |
 | METEOR | 0.504380 |
 | METEOR + stemming | 0.506101 |
 | METEOR + stemming + synonyms | 0.505749 |
 | METEOR + synonyms | 0.506884 |
-
 
 ## How alpha was chosen
 | Accuracy |  Alpha  |
@@ -31,3 +30,9 @@ Thus, the **best to a hundredth percentile** is
 | Accuracy |  Alpha  |
 |----------|:-------:|
 | 0.504380 | 0.16 |
+
+## Usage
+
+```
+python evaluate.py > output
+```
