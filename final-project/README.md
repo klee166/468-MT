@@ -2,8 +2,6 @@
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
 
-### Introduction
-
 Currently in Machine Translation, translating social media text is a challenge. User generated content (UGC) is highly noisy (spam, ads), domain unrestricted (anyone anywhere can be there), user-centric (users are given more flexiblilty and choices), generated in high volume, and focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors.
 
 Therefore, our challenges lies in being able to create a machine translation system that
@@ -13,7 +11,7 @@ data management,
 2. will preserve the meaning of words, and
 3. handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax, etc.).
 
-### Chosing a translation model
+## Chosing a translation model
 
 Currently, we're considering two approaches: Compositional Distribution Models (CDM) and Neural Machine Translation (NMT) models.
 
@@ -34,10 +32,10 @@ The training data is a parallel corpus of sentence pairs, and the goal is to max
 Recently, work has been done to combine the two approaches. However, there are still cases where traditional SMT models like Moses (a phrase-based model) outperform the former. Thus, one of our goals is to review current literature to answer questions like: in which scenarios is NMT better than tranditional SMT, and what are the properties of sentences for which NMT performs well (for example, source sentence length, vocabulary size)?
 
 
-### Choosing data
+## Choosing data
 
 
-### Resources
+## Resources
 
 ##### Neural-based MT
 1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bengio et al., 2013.
