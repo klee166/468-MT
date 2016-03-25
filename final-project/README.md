@@ -1,12 +1,14 @@
 ## Machine Translation for Social Media
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
-
 ### Introduction
+
+Translating social media text is a challenge, currently in Machine Translation, user generated content(UGC) is 1.highly noisy, 2. domain unrestricted (anyone anywhere can be there) 3.user-centric (users are given more flexiblilty and choices) 4.generated in high volume 5. focued on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is 1.large-scale and (as close as possible to) real-time
+data management, 2) will preserve the meaning of words and 3) handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax).
 
 ### Chosing a translation model
 
-Currently, we're considering two approaches: Compositional Distribution Models (CDM) and Neural Machine Translation (NMT) models. Recently, there has been work done to combine the two.
+Currently, we're considering two approaches: Compositional Distribution Models (CDM) and Neural Machine Translation (NMT) models.
 
 #### Compositional Distribution Models
 
@@ -16,16 +18,4 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 
 #### Neural Machine Translation models
 
-Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding *à la* Bengio, 2013), which is then decoded to a variable-length translation.
-
-
-### Choosing data
-
-
-### Resources
-
-##### Neural-based models
-1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473v6.pdf). Bengio et al., 2013.
-
-##### Compositional Distribution models
-1. [Compositional Operators in Distributional Semantics](https://www.cs.ox.ac.uk/files/6248/kartsaklis-springer.pdf). Kartsaklis, 2014.
+Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or ), which is then decoded to a variable-length translation.
