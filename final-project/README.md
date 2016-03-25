@@ -16,9 +16,16 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 
 #### Neural Machine Translation models
 
-Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding à la Bengio, 2013), which is then decoded to a variable-length translation.
+Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding *à la* Bengio, 2013), which is then decoded to a variable-length translation.
 
 
 ### Choosing data
 
 
+### Resources
+
+##### Neural-based models
+1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473v6.pdf). Bengio et al., 2013.
+
+##### Compositional Distribution models
+1. [Compositional Operators in Distributional Semantics](https://www.cs.ox.ac.uk/files/6248/kartsaklis-springer.pdf). Kartsaklis, 2014.
