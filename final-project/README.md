@@ -4,7 +4,7 @@
 
 ### Introduction
 
-Currently in Machine Translation, translating social media text is a challenge. User generated content (UGC) is (i) highly noisy, (ii) domain unrestricted (anyone anywhere can be there) (iii) user-centric (users are given more flexiblilty and choices) (iv) generated in high volume (v). focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is
+Currently in Machine Translation, translating social media text is a challenge. User generated content (UGC) is (i) highly noisy (spam, ads), (ii) domain unrestricted (anyone anywhere can be there), (iii) user-centric (users are given more flexiblilty and choices), (iv) generated in high volume, and (v) focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is
 1. large-scale and as close to real-time as possible in 
 data management,
 2. will preserve the meaning of words, and
