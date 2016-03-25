@@ -2,9 +2,11 @@
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
 
+### Introduction
+
 ### Chosing a translation model
 
-Currently, we're considering two approaches: Compositional Distribution Models (CDM) and Neural Machine Translation (NMT) models.
+Currently, we're considering two approaches: Compositional Distribution Models (CDM) and Neural Machine Translation (NMT) models. Recently, there has been work done to combine the two.
 
 #### Compositional Distribution Models
 
@@ -14,4 +16,9 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 
 #### Neural Machine Translation models
 
-Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or ), which is then decoded to a variable-length translation.
+Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding à la Bengio, 2013), which is then decoded to a variable-length translation.
+
+
+### Choosing data
+
+
