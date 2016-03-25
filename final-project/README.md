@@ -3,8 +3,8 @@
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
 ### Introduction
 
-Translating social media text is a challenge, currently in Machine Translation, user generated content(UGC) is 1.highly noisy, 2. domain unrestricted (anyone anywhere can be there) 3.user-centric (users are given more flexiblilty and choices) 4.generated in high volume 5. focued on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is 1.large-scale and (as close as possible to) real-time
-data management, 2) will preserve the meaning of words and 3) handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax).
+Currently in Machine Translation, translating social media text is a challenge. User generated content(UGC) is 1.highly noisy, 2. domain unrestricted (anyone anywhere can be there) 3.user-centric (users are given more flexiblilty and choices) 4.generated in high volume 5. focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is 1.large-scale and as close to real-time as possible in 
+data management, 2. will preserve the meaning of words, and 3. handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax).
 
 ### Chosing a translation model
 
