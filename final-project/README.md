@@ -22,7 +22,13 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 
 #### Neural Machine Translation models
 
-Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or ), which is then decoded to a variable-length translation.
+Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input is encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding, *à la* Bengio et al., 2013), which is then decoded to a variable-length translation. The hidden state *h* is where all the magic of translation happens.
+
+The training data is a parallel corpus of sentence pairs, and the goal is to maximize the log-likelihood of probability of translation from a source to target, just like a traditional SMT model.
+
+#### Which is better?
+
+Recently, work has been done to combine the two approaches. However, there are still cases where traditional SMT models like Moses (a phrase-based model) outperform the former. Thus, one of our goals is to review current literature to answer questions like: in which scenarios is NMT better than tranditional SMT, and what are the properties of sentences for which NMT performs well (for example, source sentence length, vocabulary size)?
 
 
 ### Choosing data
