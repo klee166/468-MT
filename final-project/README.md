@@ -1,10 +1,14 @@
 ## Machine Translation for Social Media
 
 **—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
+
 ### Introduction
 
-Currently in Machine Translation, translating social media text is a challenge. User generated content(UGC) is 1.highly noisy, 2. domain unrestricted (anyone anywhere can be there) 3.user-centric (users are given more flexiblilty and choices) 4.generated in high volume 5. focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is 1.large-scale and as close to real-time as possible in 
-data management, 2. will preserve the meaning of words, and 3. handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax, etc.).
+Currently in Machine Translation, translating social media text is a challenge. User generated content (UGC) is (i) highly noisy, (ii) domain unrestricted (anyone anywhere can be there) (iii) user-centric (users are given more flexiblilty and choices) (iv) generated in high volume (v). focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors. Therefore, our challenges lies in being able to create a machine translation system that is
+1. large-scale and as close to real-time as possible in 
+data management,
+2. will preserve the meaning of words, and
+3. handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax, etc.).
 
 ### Chosing a translation model
 
@@ -19,3 +23,21 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 #### Neural Machine Translation models
 
 Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or ), which is then decoded to a variable-length translation.
+
+
+### Choosing data
+
+
+### Resources
+
+##### Neural-based MT
+1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bengio et al., 2013.
+2. [Neural Machine Translation of Rare Words with Subword Units](http://arxiv.org/pdf/1508.07909v3.pdf). Sennrich et al., 2015.
+3. [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615.pdf). Kim et al., 2015.
+
+
+##### Compositional Distributional Models
+1. [Compositional Operators in Distributional Semantics](https://www.cs.ox.ac.uk/files/6248/kartsaklis-springer.pdf). Kartsaklis, 2014.
+
+##### Works usings Twitter datasets
+1. [Automatic Keyword Extraction on Twitter](http://www.cs.cmu.edu/~lingwang/papers/acl2015-3.pdf). Ling et al, 2015.
