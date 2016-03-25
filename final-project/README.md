@@ -13,3 +13,5 @@ Distributional semantic modelling hypothesizes that the meaning of a word is rel
 What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead of word vectors, we now work with sentence vectors. The sentence vectors are generated from the word vectors (there are a number of ways this can be done, a few of approaches being additive, tensor-based, and deep learning).
 
 #### Neural Machine Translation models
+
+Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input in encoded as a fixed-length vector (or ), which is then decoded to a variable-length translation.
