@@ -23,9 +23,9 @@ What CDM does is that it ties DSM to formal semantic rules/models. Thus, instead
 
 #### Neural Machine Translation models
 
-Neural-based machine translation research dates back to Forcada and and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A varibale-length input is encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding, *à la* Bengio et al., 2013), which is then decoded to a variable-length translation. The hidden state *h* is where all the magic of translation happens.
+Neural-based machine translation research dates back to Forcada and Neco, 1997. The base of most neural-based models is the encoder-decoder architecture. A variable-length input is encoded as a fixed-length vector (or a sequence of vectors of which a subset is chosen during decoding, *à la* Bengio et al., 2013), which is then decoded to a variable-length output. The hidden state *h* is where all the magic of translation happens.
 
-The training data is a parallel corpus of sentence pairs, and the goal is to maximize the log-likelihood of probability of translation from a source to target, just like a traditional SMT model.
+The training data is a parallel corpus of sentence pairs, and the goal is to maximize the log-likelihood of probability of translation from a source to target, just like any traditional SMT model.
 
 #### Which is better?
 
