@@ -42,6 +42,7 @@ For training, we're considering using either [microtopia](http://www.cs.cmu.edu/
 1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bengio et al., 2013.
 2. [Neural Machine Translation of Rare Words with Subword Units](http://arxiv.org/pdf/1508.07909v3.pdf). Sennrich et al., 2015.
 3. [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615.pdf). Kim et al., 2015.
+4. [A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation](http://arxiv.org/pdf/1603.06147.pdf). Chung et al., 2016.
 
 
 ##### Compositional Distributional Models
