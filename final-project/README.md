@@ -34,6 +34,7 @@ Recently, work has been done to combine the two approaches. However, there are s
 
 ## Choosing data
 
+For training, we're considering using either [microtopia](http://www.cs.cmu.edu/~lingwang/microtopia/) or [subtiles from OPUS](http://opus.lingfil.uu.se/OpenSubtitles2016.php) for English-Japanese senence pairs (subtitles because it'd be more representative of colloquial language). Testing can then be done on crawled data from Twitter.
 
 ## Resources
 
