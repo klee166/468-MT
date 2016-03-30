@@ -145,6 +145,10 @@ Mixed and Matched Best Parameters
 ---------------------
 HIGHEST : 0.273996875183
 Variable : -l "-1.03"
+
+Oracle Score : 0.400571481713
+
+Conclusion: Can't get near oracle score by editing parameter values
 ---------------------
 Others...
 
