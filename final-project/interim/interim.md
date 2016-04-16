@@ -24,13 +24,27 @@ We will survey the current state-of-the-art neural network architecture (Bahdana
 
 ## Model
 
-The current state-of-the-art NMT model makes use of a **Bidirectional RNN (BiRNN)** to encode the input `x` to a *sequence of vectors*, of which a *subset* is chosen during translation by the **Gated Recursive Unit (GRU)** decoder.
+The current state-of-the-art NMT model (RNNSearch) makes use of a **Bidirectional RNN (BiRNN)** to encode the input `x` to a *sequence of vectors*, of which a *subset* is chosen during translation by the **Gated Recursive Unit (GRU)** decoder.
 
-We won't go into depth to describe Recursive Neural Networks (RNN) here (see [this](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) blog post by Andrej Karpathy or [this](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/) tutorial by Denny Britz for well-written introductions).
+We won't go into depth to describe Recursive Neural Networks (RNN) here (see [this](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) blog post by Andrej Karpathy or [this](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/) tutorial by Denny Britz for well-written introductions), but only focus on the RNN extensions used in the chosen model.
 
-## Choosing data
+#### The BiRNN Encoder
+
+While in a vanilla RNN the output `y` is dependent on current input `x` and all previous inputs, a bidirectional RNN assumes that `y` is not only dependent on precedding inputs but also on upcoming inputs.
+
+The forward states $\overrightarrow{h_t}$ are computed as
+
+$$ h_t = (1 - z_t) * h_{t-1} + z_t * \tilde{h_t} $$
+
+where `*` represents element-wise operation, and
+
+$$ \tild{h_t} = \tanh ()
+
+## Data
 
 For training, we're considering using either [microtopia](http://www.cs.cmu.edu/~lingwang/microtopia/) or [subtiles from OPUS](http://opus.lingfil.uu.se/OpenSubtitles2016.php) for English-Japanese senence pairs (subtitles because it'd be more representative of colloquial language). Testing can then be done on crawled data from Twitter.
+
+Our `vocabulary_size` is 30,000, that is, we only use 30,000 most frequent words. Any word not in our vocabulary is mapped to `UNKOWN_TOKEN`. For example, say "Johns" in an infrequent word in our training corpus. Then the sentence "Johns Hopkins University is in Baltimore" will be processed as "UNKOWN_TOKEN Hopkins University is in Baltimore".
 
 ## Resources
 
