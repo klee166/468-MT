@@ -46,6 +46,9 @@ For training, we're considering using either [microtopia](http://www.cs.cmu.edu/
 
 Our `vocabulary_size` is 30,000, that is, we only use 30,000 most frequent words. Any word not in our vocabulary is mapped to `UNKOWN_TOKEN`. For example, say "Johns" in an infrequent word in our training corpus. Then the sentence "Johns Hopkins University is in Baltimore" will be processed as "UNKOWN_TOKEN Hopkins University is in Baltimore".
 
+## Training
+We are using SGD(Stochastic Gradient Descent), which the implementation is avaliable on Theano. In short, it trains the pamareters of our recursive neural network to move in the direction that minimizes the error of the loss function. We are training on 80% of the Twitter parallel corpus and testing on 20% of the Twitter corpus.
+
 ## Resources
 
 ##### Neural-based MT
