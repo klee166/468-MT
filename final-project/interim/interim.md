@@ -16,10 +16,15 @@ data management,
 
 Neural-based machine translation research dates back to Forcada and Neco (1997). While traditional Statistical Machine Translation (SMT) models rely on pre-designed features (like POS tags, etc.), neural machine translation models do not make use of any pre-designed features. That is to say, all features they learn are from training, and this maximizes their performance.
 
-Recently proposed NMT models, like those by Kalchbrenner and Blunsom (2013), Sutskever *et al.* (2014), Cho *et al.* (2014), Bahdanau *et al.* (2015) have showed comparable performace to state-of-the-art SMT models like Moses (Koehn et al., 2003). The base of these neural-based models is [mostly] the *encoder-decoder* architecture. A variable-length input is encoded as a fixed-length vector, which is then decoded to a variable-length output (Sutskever *et al.*, 2014; Cho *et al.*, 2014). The hidden state *h* is where all the magic of translation happens.
+Recently proposed NMT models, like those by Kalchbrenner and Blunsom (2013), Sutskever *et al.* (2014), Cho *et al.* (2014), and Bahdanau *et al.* (2015) have showed comparable performace to state-of-the-art SMT models like Moses (Koehn et al., 2003). The base of all these neural-based models is [mostly] the *encoder-decoder* architecture. A variable-length input is encoded as a fixed-length vector, which is then decoded to a variable-length output (Sutskever *et al.*, 2014; Cho *et al.*, 2014). The hidden state *h* is where all the magic of translation happens.
 
-The training data is a parallel corpus of sentence pairs, and the goal is to maximize the log-likelihood of probability of translation from a source to target, just like any traditional SMT model.
+In this simple encoder-decoder architecture, one is essentially cramming information of an entire sentence into a single vector. This is not reasonable, and indeed, it has been shown that as sentence length increases, the performance of the neural network degrades (Cho *et al.*, 2014).
 
+We will survey the current state-of-the-art neural network architecture (Bahdanau *et al.*, 2015), and use it to translate tweets from Japanese to English.
+
+## Background: Recurrent Neural Networks
+
+The current state-of-the-art NMT model makes use of a **Bidirectional RNN (BiRNN)** to encode the input `x` to a *sequence* of vectors, of which a *subset* is chosen during translation by the **Gated Recursive Unit (GRU)** decoder.
 
 
 ## Choosing data
