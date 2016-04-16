@@ -1,0 +1,42 @@
+## Implementing a Neural Network Model for Translation of Japanese-English Tweets
+
+**—Collaborated with [Sarah Watanabe](https://github.com/swatana3).**
+
+Currently in Machine Translation, translating social media text is a challenge. User generated content (UGC) is highly noisy (spam, ads), domain unrestricted (anyone anywhere can be there), user-centric (users are given more flexiblilty and choices), generated in high volume, and focused on knowledge and context sharing at the expense of grammatical, spelling, and other linguistic errors.
+
+Therefore, our challenges lies in being able to create a machine translation system that
+
+1. is large-scale and as close to real-time as possible in 
+data management,
+2. will preserve the meaning of words, and
+3. will handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax, etc.).
+
+
+## Neural networks for translation
+
+Neural-based machine translation research dates back to Forcada and Neco (1997). While traditional Statistical Machine Translation (SMT) models rely on pre-designed features (like POS tags, etc.), neural machine translation models do not make use of any pre-designed features. That is to say, all features they learn are from training, and this maximizes their performance.
+
+Recently proposed NMT models, like those by Kalchbrenner and Blunsom (2013), Sutskever *et al.* (2014), Cho *et al.* (2014), Bahdanau *et al.* (2015) have showed comparable performace to state-of-the-art SMT models like Moses (Koehn et al., 2003). The base of these neural-based models is [mostly] the *encoder-decoder* architecture. A variable-length input is encoded as a fixed-length vector, which is then decoded to a variable-length output (Sutskever *et al.*, 2014; Cho *et al.*, 2014). The hidden state *h* is where all the magic of translation happens.
+
+The training data is a parallel corpus of sentence pairs, and the goal is to maximize the log-likelihood of probability of translation from a source to target, just like any traditional SMT model.
+
+
+
+## Choosing data
+
+For training, we're considering using either [microtopia](http://www.cs.cmu.edu/~lingwang/microtopia/) or [subtiles from OPUS](http://opus.lingfil.uu.se/OpenSubtitles2016.php) for English-Japanese senence pairs (subtitles because it'd be more representative of colloquial language). Testing can then be done on crawled data from Twitter.
+
+## Resources
+
+##### Neural-based MT
+1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bengio et al., 2013.
+2. [Neural Machine Translation of Rare Words with Subword Units](http://arxiv.org/pdf/1508.07909v3.pdf). Sennrich et al., 2015.
+3. [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615.pdf). Kim et al., 2015.
+4. [A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation](http://arxiv.org/pdf/1603.06147.pdf). Chung et al., 2016.
+
+
+##### Compositional Distributional Models
+1. [Compositional Operators in Distributional Semantics](https://www.cs.ox.ac.uk/files/6248/kartsaklis-springer.pdf). Kartsaklis, 2014.
+
+##### Works usings Twitter datasets
+1. [Automatic Keyword Extraction on Twitter](http://www.cs.cmu.edu/~lingwang/papers/acl2015-3.pdf). Ling et al, 2015.
