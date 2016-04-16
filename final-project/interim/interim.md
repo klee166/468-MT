@@ -22,10 +22,11 @@ In this simple encoder-decoder architecture, one is essentially cramming informa
 
 We will survey the current state-of-the-art neural network architecture (Bahdanau *et al.*, 2015), and use it to translate tweets from Japanese to English.
 
-## Background: Recurrent Neural Networks
+## Model
 
-The current state-of-the-art NMT model makes use of a **Bidirectional RNN (BiRNN)** to encode the input `x` to a *sequence* of vectors, of which a *subset* is chosen during translation by the **Gated Recursive Unit (GRU)** decoder.
+The current state-of-the-art NMT model makes use of a **Bidirectional RNN (BiRNN)** to encode the input `x` to a *sequence of vectors*, of which a *subset* is chosen during translation by the **Gated Recursive Unit (GRU)** decoder.
 
+We won't go into depth to describe Recursive Neural Networks (RNN) here (see [this](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) blog post by Andrej Karpathy or [this](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/) tutorial by Denny Britz for well-written introductions).
 
 ## Choosing data
 
