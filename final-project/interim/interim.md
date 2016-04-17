@@ -46,7 +46,7 @@ $$ h_t =
 0 & \text{ if } t = 0
 \end{cases} $$
 
-where $z_t$ are the *update gates* and $r_t$ are the *reset gates*, and `*` represents element-wise operation; and
+As you can see, there are two gates: the *update gate* $z_t$ and the *reset gate* $r_t$. Also, `*` represents element-wise operation; and
 
 $$ \tilde{h_t} = \tanh (W E x_t + U [ r_t * h_{t-1} ]) $$
 
@@ -54,32 +54,44 @@ $$ z_t = \sigma (W_z E x_t + U_z h_{t-1} ) $$
 
 $$ r_t = \sigma (W_r E x_t + U_r h_{t-1} ) $$
 
-Let *m* be the word embedding dimensionality or sentence size, *n* be the number of hidden states, and $ K_x $ and $ K_y $ be the `vocabulary\_size` for source and target languages, respectively (note, in our implementation $ K_x = K_y $). Then, $ E \in \mathbb{R}^{m \times K_x} $ is the word embedding matrix, and $ W, W_z, W_r \in \mathbb{R}^{n \times m} $ and $ U, U_z, U_r \in \mathbb{R}^{n \times n} $ are the weight matrices.
+Let *m* be the word embedding dimensionality or sentence size, *n* be the number of hidden states, and $ K_x $ and $ K_y $ be the `vocabulary_size` for source and target languages, respectively (note, in our implementation $ K_x = K_y $). Then, $ E \in \mathbb{R}^{m \times K_x} $ is the word embedding matrix, and $ W, W_z, W_r \in \mathbb{R}^{n \times m} $ and $ U, U_z, U_r \in \mathbb{R}^{n \times n} $ are the weight matrices.
 
 Its important to note that only the word embedding matrix *E* is shared between the forward and backward states (none of the other matrices or gates are shared).
 
 #### GRU Decoder
 
-## Data
+The Gated Recursive Unit (GRU) was proposed by Cho *et al.* (2014). We won't desribe it in detail here, but see [this](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) post by Christopher Olah to understand the reasoning behind them. (will post more on this later).
 
-For training, we're considering using either [microtopia](http://www.cs.cmu.edu/~lingwang/microtopia/) or [subtiles from OPUS](http://opus.lingfil.uu.se/OpenSubtitles2016.php) for English-Japanese senence pairs (subtitles because it'd be more representative of colloquial language). Testing can then be done on crawled data from Twitter.
+## Experiment Settings
 
-Our `vocabulary_size` is 30,000, that is, we only use 30,000 most frequent words. Any word not in our vocabulary is mapped to `UNKOWN_TOKEN`. For example, say "Johns" in an infrequent word in our training corpus. Then the sentence "Johns Hopkins University is in Baltimore" will be processed as "UNKOWN_TOKEN Hopkins University is in Baltimore".
+#### Data
 
-## Training
-We are using SGD(Stochastic Gradient Descent), which the implementation is avaliable on Theano. In short, it trains the pamareters of our recursive neural network to move in the direction that minimizes the error of the loss function. We are training on 80% of the Twitter parallel corpus and testing on 20% of the Twitter corpus.
+Our dataset is the Japanese-English parallel corpus on [microtopia](http://www.cs.cmu.edu/~lingwang/microtopia/). We use 80% of the data for training, and the rest 20% for testing.
+
+We limit our `vocabulary_size` to 30,000, that is, we only use 30,000 most frequent words. Any word not in our vocabulary is mapped to `UNKOWN_TOKEN`. For example, say "Johns" in an infrequent word in our training corpus. Then the sentence "Johns Hopkins University is in Baltimore" will be processed as "UNKOWN_TOKEN Hopkins University is in Baltimore".
+
+#### Code
+
+We use [Theano](http://deeplearning.net/software/theano/) and [Blocks](http://blocks.readthedocs.org/en/latest/).
+
+## Training: SGD and BPTT
+
+As by now you would know, neural networks start out "blank". That is to say, they make use of no pre-designed feature parameters. The weight matrices are [generally] randomly initialized. It is the goal of training to find matrices that give rise to most desirable behavior (loss function).
+
+We use Stochastic Gradient Descent (SGD) algorithm to minimize the error loss.  What it does is that it trains the pamareters of the neural network to move in a direction that minimizes error. This direction is given by the gradients on the loss.
+
+(more to come later).
 
 ## Resources
 
 ##### Neural-based MT
-1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bengio et al., 2013.
-2. [Neural Machine Translation of Rare Words with Subword Units](http://arxiv.org/pdf/1508.07909v3.pdf). Sennrich et al., 2015.
-3. [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615.pdf). Kim et al., 2015.
-4. [A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation](http://arxiv.org/pdf/1603.06147.pdf). Chung et al., 2016.
-
-
-##### Compositional Distributional Models
-1. [Compositional Operators in Distributional Semantics](https://www.cs.ox.ac.uk/files/6248/kartsaklis-springer.pdf). Kartsaklis, 2014.
+1. [Neural Machine Translation by Jointly Learning to Align and Translate](http://arxiv.org/pdf/1409.0473.pdf). Bahdanau *et al.* (2013).
+2. [Neural Machine Translation of Rare Words with Subword Units](http://arxiv.org/pdf/1508.07909v3.pdf). Sennrich *et al.* (2015).
+3. [Character-Aware Neural Language Models](http://arxiv.org/pdf/1508.06615.pdf). Kim *et al.* (2015).
+4. [A Character-Level Decoder without Explicit Segmentation for Neural Machine Translation](http://arxiv.org/pdf/1603.06147.pdf). Chung *et al.* (2016).
+5. [Recurrent Neural Networks Tutorial](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/)
+6. [Deep Learning with Torch Tutorial](https://github.com/soumith/cvpr2015/blob/master/Deep%20Learning%20with%20Torch.ipynb)
+7. [Theano Tutorial](http://nbviewer.jupyter.org/github/craffel/theano-tutorial/blob/master/Theano%20Tutorial.ipynb)
 
 ##### Works usings Twitter datasets
-1. [Automatic Keyword Extraction on Twitter](http://www.cs.cmu.edu/~lingwang/papers/acl2015-3.pdf). Ling et al, 2015.
+1. [Automatic Keyword Extraction on Twitter](http://www.cs.cmu.edu/~lingwang/papers/acl2015-3.pdf). Ling *et al.* (2015).
