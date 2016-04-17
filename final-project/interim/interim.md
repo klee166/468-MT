@@ -40,11 +40,25 @@ $$ h_t =
 
 $h_t$ is computed as
 
-$$ h_t = (1 - z_t) * h_{t-1} + z_t * \tilde{h_t} $$
+$$ h_t = 
+\begin{cases}
+(1 - z_t) * h_{t-1} + z_t * \tilde{h_t} & \text{ if } t > 0 \\
+0 & \text{ if } t = 0
+\end{cases} $$
 
-where `*` represents element-wise operation, and
+where $z_t$ are the *update gates* and $r_t$ are the *reset gates*, and `*` represents element-wise operation; and
 
-$$ \tilde{h_t} = \tanh () $$
+$$ \tilde{h_t} = \tanh (W E x_t + U [ r_t * h_{t-1} ]) $$
+
+$$ z_t = \sigma (W_z E x_t + U_z h_{t-1} ) $$
+
+$$ r_t = \sigma (W_r E x_t + U_r h_{t-1} ) $$
+
+Let *m* be the word embedding dimensionality or sentence size, *n* be the number of hidden states, and $ K_x $ and $ K_y $ be the `vocabulary\_size` for source and target languages, respectively (note, in our implementation $ K_x = K_y $). Then, $ E \in \mathbb{R}^{m \times K_x} $ is the word embedding matrix, and $ W, W_z, W_r \in \mathbb{R}^{n \times m} $ and $ U, U_z, U_r \in \mathbb{R}^{n \times n} $ are the weight matrices.
+
+Its important to note that only the word embedding matrix *E* is shared between the forward and backward states (none of the other matrices or gates are shared).
+
+#### GRU Decoder
 
 ## Data
 
