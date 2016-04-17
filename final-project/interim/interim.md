@@ -30,15 +30,21 @@ We won't go into depth to describe Recursive Neural Networks (RNN) here (see [th
 
 #### The BiRNN Encoder
 
-While in a vanilla RNN the output `y` is dependent on current input `x` and all previous inputs, a bidirectional RNN assumes that `y` is not only dependent on precedding inputs but also on upcoming inputs.
+While in a vanilla RNN the output `y` is dependent on current input `x` and all previous inputs, a bidirectional RNN assumes that `y` is not only dependent on preceding inputs but also on forward/upcoming inputs. We first compute the *forward states* $\overrightarrow{h_t}$ by iterating over the sentence $x = (x_1,...,x_{T_x})$. Then, we compute the backward states $\overleftarrow{h_t}$ by iterating over the reverse of the same sentence $x = (x_{T_x},...,x_1)$. Finally, we concatenate the two to obtain the states $(h_1,h_2,...h_{T_x})$ where
 
-The forward states $\overrightarrow{h_t}$ are computed as
+$$ h_t = 
+\begin{bmatrix}
+\overrightarrow{h}_{t}\\ 
+\overleftarrow{h}_{t}
+\end{bmatrix} $$
+
+$h_t$ is computed as
 
 $$ h_t = (1 - z_t) * h_{t-1} + z_t * \tilde{h_t} $$
 
 where `*` represents element-wise operation, and
 
-$$ \tild{h_t} = \tanh ()
+$$ \tilde{h_t} = \tanh () $$
 
 ## Data
 
