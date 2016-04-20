@@ -6,6 +6,10 @@ In Statistical Machine Translation (SMT), translation from a morphologically poo
 
 Here, we implement an inflection generation model which given a Czech lemma generates inflected Czech word with the best accuracy.
 
+##### Data
+We work with a parallel corpus of lemmas, morphological features (for our purposes, only POS tags), and inflected forms. All taken from [here](https://catalog.ldc.upenn.edu/LDC2006T01).
+
+##### Result
 | Inflection Generation Method |  Accuracy  |
 | --------------- |:---------:|
 | Baseline (no inflection) | 0.33 |
