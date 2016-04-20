@@ -9,6 +9,12 @@ Here, we implement an inflection generation model which given a Czech lemma gene
 ##### Data
 We work with a parallel corpus of lemmas, morphological features (for our purposes, only POS tags), and inflected forms. All taken from [here](https://catalog.ldc.upenn.edu/LDC2006T01).
 
+##### Model Assumptions
+
+1. Bijective mapping from lemmas to morphological features (only POS tags here) to inflected forms
+2. No word-reordering
+3. No word addition/deletion
+
 ##### Result
 | Inflection Generation Method |  Accuracy  |
 | --------------- |:---------:|
