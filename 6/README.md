@@ -8,4 +8,5 @@ Here, we implement an inflection generation model which given a Czech lemma gene
 
 | Inflection Generation Method |  Accuracy  |
 | --------------- |:---------:|
-| Baseline | 0.57  |
+| Baseline (no inflection) | 0.33 |
+| Most likely inflection (from counting) | 0.57 |
