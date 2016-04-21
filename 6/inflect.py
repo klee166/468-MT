@@ -8,7 +8,7 @@ Outputs a fully inflected version of a lemmatized test set (provided on STDIN).
 If training data is provided, it will use a unigram model to select the form.
 
 usage: cat LEMMA_FILE | python inflect
-       [-t TRAINING_PREFIX] [-l LEMMA_SUFFIX] [-w WORD_SUFFIX]
+       [-t TRAINING_PREFIX] [-e TEST_PREFIX] [-l LEMMA_SUFFIX] [-w WORD_SUFFIX] [-tag POS_TAG_SUFFIX]
 """
 
 import argparse
@@ -20,7 +20,7 @@ from itertools import izip
 
 PARSER = argparse.ArgumentParser(description="Inflect a lemmatized corpus")
 PARSER.add_argument("-t", type=str, default="data/train", help="training data prefix")
-PARSER.add_argument("-e", type=str, default="data/dtest", help="evaluation data prefix")
+PARSER.add_argument("-t", type=str, default="data/dtest", help="evaluation data prefix")
 PARSER.add_argument("-l", type=str, default="lemma", help="lemma file suffix")
 PARSER.add_argument("-w", type=str, default="form", help="word file suffix")
 PARSER.add_argument("-tag", type=str, default="tag", help="tag file suffix")
