@@ -6,7 +6,7 @@ Currently in Machine Translation, translating social media text is a challenge. 
 
 Therefore, our challenges lies in being able to create a machine translation system that
 
-1. is large-scale and as close to real-time as possible in 
+1. is large-scale and as close to real-time as possible in
 data management,
 2. will preserve the meaning of words, and
 3. will handle errors in linguistics and in canonical writing (verbs, grammers, typos, wrong punctuation, unstructured syntax, etc.).
@@ -32,15 +32,15 @@ We won't go into depth to describe Recursive Neural Networks (RNN) here (see [th
 
 While in a vanilla RNN the output `y` is dependent on current input `x` and all previous inputs, a bidirectional RNN assumes that `y` is not only dependent on preceding inputs but also on forward/upcoming inputs. We first compute the *forward states* $\overrightarrow{h_t}$ by iterating over the sentence $x = (x_1,...,x_{T_x})$. Then, we compute the backward states $\overleftarrow{h_t}$ by iterating over the reverse of the same sentence $x = (x_{T_x},...,x_1)$. Finally, we concatenate the two to obtain the states $(h_1,h_2,...h_{T_x})$ where
 
-$$ h_t = 
+$$ h_t =
 \begin{bmatrix}
-\overrightarrow{h}_{t}\\ 
+\overrightarrow{h}_{t}\\
 \overleftarrow{h}_{t}
 \end{bmatrix} $$
 
 $h_t$ is computed as
 
-$$ h_t = 
+$$ h_t =
 \begin{cases}
 (1 - z_t) * h_{t-1} + z_t * \tilde{h_t} & \text{ if } t > 0 \\
 0 & \text{ if } t = 0
@@ -95,3 +95,7 @@ We use Stochastic Gradient Descent (SGD) algorithm to minimize the error loss.  
 
 ##### Works usings Twitter datasets
 1. [Automatic Keyword Extraction on Twitter](http://www.cs.cmu.edu/~lingwang/papers/acl2015-3.pdf). Ling *et al.* (2015).
+
+##### Lua
+1. [Reference](http://lua-users.org/files/wiki_insecure/users/thomasl/luarefv51.pdf)
+2. [Learn Lua in 15 minutes](http://tylerneylon.com/a/learn-lua/)
